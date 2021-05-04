@@ -21,7 +21,14 @@ function RotationContainer (props){
         <div>
             <Header as='h3'>Rotation:</Header>          
                
-            {items && <Sliders propertyValues={items.PropertyValues[0].PropertyValue} propertyReq={propertyReq}></Sliders>}
+            {items && <Sliders 
+                propertyValues={items.PropertyValues[0].PropertyValue} 
+                propertyReq={propertyReq}
+                Pitch={props.Pitch}    
+                Yaw={props.Yaw} 
+                Roll={props.Roll}
+                handleChange={(e) => props.handleChange(e.target.name, e.target.value)}>
+                </Sliders>}
                     
         </div>
     )

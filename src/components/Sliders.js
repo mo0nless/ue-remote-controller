@@ -4,71 +4,74 @@ import AwesomeDebouncePromise from 'awesome-debounce-promise';
 import Request from './Request'
 
 export default class Sliders extends Component {
-  state = { 
-    Pitch: this.props.propertyValues.Pitch, 
-    Yaw: this.props.propertyValues.Yaw, 
-    Roll:this.props.propertyValues.Rolls
+  constructor(){
+    super()
   }
+  // state = { 
+  //   Pitch: this.props.Pitch, 
+  //   Yaw: this.props.Yaw, 
+  //   Roll:this.props.Roll
+  // }
   
-  defaultData = {"Pitch": parseFloat(this.state.Pitch), "Yaw": parseFloat(this.state.Yaw), "Roll": parseFloat(this.state.Roll)}
+  // defaultData = {"Pitch": parseFloat(this.state.Pitch), "Yaw": parseFloat(this.state.Yaw), "Roll": parseFloat(this.state.Roll)}
 
-  putRequest = () => {
-    const data = {"Pitch": parseFloat(this.state.Pitch), "Yaw": parseFloat(this.state.Yaw), "Roll": parseFloat(this.state.Roll)}    
-    Request(data, 'PUT', this.props.propertyReq)
-  }
+  // putRequest = () => {
+  //   const data = {"Pitch": parseFloat(this.state.Pitch), "Yaw": parseFloat(this.state.Yaw), "Roll": parseFloat(this.state.Roll)}    
+  //   Request(data, 'PUT', this.props.propertyReq)
+  // }
 
-  handleAfterChange = AwesomeDebouncePromise(
-    this.putRequest,
-    100
-  )
+  // handleAfterChange = AwesomeDebouncePromise(
+  //   this.putRequest,
+  //   100
+  // )
 
-  handleChange = async (e, { name, value }) => {
-    this.setState({ [name]: value })
-    await this.handleAfterChange()     
-  }
+  // handleChange = async (e, { name, value }) => {
+  //   this.setState({ [name]: value })
+  //   await this.handleAfterChange()     
+  // }
   
 
   //toggleVisibility = () =>  this.setState((prevState) => ({ visible: !prevState.visible }))
   
     render() {
-      const { Pitch, Yaw, Roll} = this.state
+      //const { Pitch, Yaw, Roll} = this.props
       
       return (
         <Grid columns={3}>
         <Grid.Column as={Form}>
           <Form.Input
-            label={`Pitch: ${Pitch}° `}
+            label={`Pitch: ${this.props.Pitch}° `}
             min={0}
             max={360}
             name='Pitch'
-            onChange={this.handleChange}
+            onChange={(e) => this.props.handleChange(e.target.name, e.target.value)}
             step={1}
             type='range'
-            value={Pitch}
+            value={this.props.Pitch}
           />
         </Grid.Column >          
         <Grid.Column as={Form}>
           <Form.Input
-            label={`Yaw: ${Yaw}° `}
+            label={`Yaw: ${this.props.Yaw}° `}
             min={0}
             max={360}
             name='Yaw'
-            onChange={this.handleChange}
+            onChange={(e) => this.props.handleChange(e.target.name, e.target.value)}
             step={1}
             type='range'
-            value={Yaw}
+            value={this.props.Yaw}
           />
         </Grid.Column>
         <Grid.Column as={Form}>
           <Form.Input
-            label={`Roll: ${Roll}° `}
+            label={`Roll: ${this.props.Roll}° `}
             min={0}
             max={360}
             name='Roll'
-            onChange={this.handleChange}
+            onChange={(e) => this.props.handleChange(e.target.name, e.target.value)}
             step={1}
             type='range'
-            value={Roll}
+            value={this.props.Roll}
           />
         </Grid.Column>
       </Grid>

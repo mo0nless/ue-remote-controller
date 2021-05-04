@@ -29,26 +29,7 @@ function App() {
   //             // console.log(data.Preset.Name)
   //         })
   // }
-
-  // handleClick(){
-  //   const requestOptions = {
-  //     method: 'PUT',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(
-  //       {
-  //         "PropertyValue": {
-  //             "Pitch": -90,
-  //             "Yaw": 0,
-  //             "Roll": 0
-  //         },
-  //         "GenerateTransaction": true
-  //       }
-  //     )
-  //   };
-  //   fetch('http://localhost:30010/remote/preset/RemoteControlPreset/property/Relative Rotation (CameraActor_1)', requestOptions)
-  //       .then(response => response.status === 200 ? console.log("success") : console.log("error"))   
-  // }
-
+  
   // Uninitialized state will cause Child to error out
   const [items, setItems] = useState();
   
@@ -60,6 +41,16 @@ function App() {
       .then(data => setItems(data));
   }, []);
   
+  let liveProps = {}
+  const parsedItems = items && items.Preset.Groups.map(item => {
+      if (item.Name === "Main Camera")
+      {
+          liveProps = item.ExposedProperties
+      }
+          return(
+              item
+          )
+  })
   
   //render() {
     return (
@@ -73,13 +64,26 @@ function App() {
       //     {/* <FetchData handleClick={this.handleClick}/> */}
       //   </header>
       // </div>
-      <Container style={{ margin: 20 }} className="App">
-        <div>
-          {items && <CameraContainer items={items.Preset.Groups}></CameraContainer>}
-          {/* <CameraContainer></CameraContainer> */}
+      // <Container style={{ margin: 20 }} className="App">
+      //   <div>
+      //     {items && <CameraContainer items={items.Preset.Groups}></CameraContainer>}
+      //     {/* <CameraContainer></CameraContainer> */}
+      //   </div>
+      // </Container>
+        <div style={{ margin: 20 }} className="App">          
+          {parsedItems && parsedItems.map(item => {
+          const exposedProps = item.ExposedProperties
+          return(
+            console.log(item),
+            <CameraContainer 
+              item={item} 
+              key={item.Name} 
+              liveProps={liveProps}
+            >
+            </CameraContainer>
+          )})}
         </div>
-      </Container>
-    );
+    )
  //}
 }
 

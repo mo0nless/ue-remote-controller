@@ -1,7 +1,4 @@
-import React, { Component, useEffect, useState  } from 'react';
-
 const Request = (data, type, propertyReq) => {
-  console.log(data)
   const requestOptions = {
     method: type,
     headers: { 'Content-Type': 'application/json' },

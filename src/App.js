@@ -29,7 +29,6 @@ function App() {
   return (
       <div style={{ margin: 20 }} className="App">          
         {parsedItems && parsedItems.map(item => {
-          const exposedProps = item.ExposedProperties
           return(
             <CameraContainer 
               item={item} 

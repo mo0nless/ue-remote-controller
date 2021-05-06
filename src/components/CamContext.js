@@ -4,5 +4,7 @@ export const CamContext = React.createContext({
     Cam: {},
     Location: {},
     Rotation: {},
-    handleChange: () => {}
+    handleChange: () => {},
+    resetDefault: () => {},
+    forceUpdate: () => {}
 });

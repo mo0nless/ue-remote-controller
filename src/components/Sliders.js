@@ -3,9 +3,10 @@ import { Form, Grid} from 'semantic-ui-react'
 import {CamContext} from './CamContext'
 
 function Sliders(){
+  const content = "Rotation"
   return(
     <CamContext.Consumer>
-        {({Cam, Rotation, Location, handleChange}) =>
+        {({Rotation, handleChange}) =>
           (
           <Grid columns={3}>
           <Grid.Column as={Form}>
@@ -14,7 +15,7 @@ function Sliders(){
               min={0}
               max={360}
               name='Pitch'
-              onChange={handleChange}
+              onChange={(e,v) => handleChange(e, v)}
               content="Rotation"
               step={1}
               type='range'
@@ -27,7 +28,7 @@ function Sliders(){
               min={0}
               max={360}
               name='Yaw'
-              onChange={handleChange}
+              onChange={(e,v) => handleChange(e, v)}
               content="Rotation"
               step={1}
               type='range'
@@ -40,7 +41,7 @@ function Sliders(){
               min={0}
               max={360}
               name='Roll'
-              onChange={handleChange}
+              onChange={(e,v) => handleChange(e, v)}
               content="Rotation"
               step={1}
               type='range'

@@ -5,7 +5,7 @@ import {CamContext} from "./CamContext"
 function InputLocation(){
   return (
     <CamContext.Consumer>
-        {({Cam, Rotation, Location, handleChange}) =>
+        {({Location, handleChange}) =>
           (
         <Grid columns={3}>
         <Grid.Column as={Form}>

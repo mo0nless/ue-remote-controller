@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import {Header} from 'semantic-ui-react'
 import InputLocation from './InputLocation'
 
